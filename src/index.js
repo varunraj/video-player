@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { config } from '../config';
+
+const API_KEY = config.youtube_key
 
 // create a new component. Component is a class
 
-const App = function(){
+const App = () => {
   return <div>Hi</div>
 }
 
