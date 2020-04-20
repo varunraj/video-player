@@ -1,8 +1,14 @@
 import React from 'react';
 
 
-const SearchBar = () =>{
-    return <input></input>
+class SearchBar extends React.Component {
+
+    // override the render function from baseclass
+
+    render()   {
+        return <input />;
+    }
+
 }
 
 export default SearchBar;
