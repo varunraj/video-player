@@ -23,26 +23,31 @@ class App extends Component {
       selectedVideo : null
     };
 
-    YTSearch({key:API_KEY, term:'surfboards'}, (videos) => {
-      this.setState({
-         videos,
-         selectedVideo: videos[1] 
-        
-        }) ;
-    });
-
+    this.videoSearch('surfboards');
   }
 
-  render(){
+    videoSearch(term) {
+       YTSearch({key:API_KEY, term:term}, (videos) => {
+          this.setState({
+            videos,
+            selectedVideo: videos[1] 
+            }) ;
+          });
+
+        };
+    
+
+  render() {
     return (
           <div>
-            <SearchBar />
+            <SearchBar onSearchTermChange ={term=> this.videoSearch(term)}/>
             <VideoDetail video = {this.state.selectedVideo}/>
             <VideoList
               onVideoSelect = {selectedVideo => this.setState({selectedVideo})} 
               videos = {this.state.videos} />
           </div>
-    )}
+    );
+  }
 }
 
 // Deliver the component instance (from class created) to DOM. We need to place the app inside 
