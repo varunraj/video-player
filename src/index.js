@@ -1,3 +1,6 @@
+// for creating lagged version of a function =. throttling
+import _ from 'lodash';
+
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { config } from '../config';
@@ -38,9 +41,13 @@ class App extends Component {
     
 
   render() {
+
+    // create a lagged version of search so that page dont refresh every stroke. 300 ms throttle 
+    const videoSearch = _.debounce((term)=> {this.videoSearch(term)}, 300 );
+
     return (
           <div>
-            <SearchBar onSearchTermChange ={term=> this.videoSearch(term)}/>
+            <SearchBar onSearchTermChange ={videoSearch}/>
             <VideoDetail video = {this.state.selectedVideo}/>
             <VideoList
               onVideoSelect = {selectedVideo => this.setState({selectedVideo})} 
